@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <!-- jQuery and JS bundle w/ Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <title>SMS</title>
+    <style>
+        body{
+            background-color:#e1e1ef ;
+            width: 100%;
+        }
+        .header{
+            border-radius: 5px 5px 0 0;
+            background-color: #ffffff;
+            border-bottom: 1px solid #e1e1ef;
+        }
+        .header h5{
+            margin-top: 5px !important;
+        }
+        .right_btn{
+            text-align: right;
+        }
+        .right_btn a{
+            width: 100px;
+        }
+        .content{
+            border-radius: 0 0 5px 5px;
+            background-color: #ffffff;
+            border-bottom: 1px solid #e1e1ef;
+        }
+        .c_name label{
+            text-align: center;
+        }
+        .c_name label:nth-child(2){
+            margin-left: 50px;
+        }
+        #name{
+            margin-left: 10px;
+            height: 35px;
+            width: 100px;
+            border:1px solid #e1e1ef;
+            outline: none;
+            border-radius: 3px;
+        }
+        #name:focus{
+            border:1px solid #2c77f4;
+            outline: none;
+        }
+        #number{
+            margin-left: 10px;
+            height: 35px;
+            width: 130px;
+            border:1px solid #e1e1ef;
+            outline: none;
+            border-radius: 3px;
+        }
+        #number:focus{
+            border:1px solid #2c77f4;
+            outline: none;
+        }
+        .footer{
+            font-size: 10px;
+            padding: 0 10px;
+        }
+        .prov, .next{
+            background-color: #e1e1ef;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-xl p-3 mt-3 header">
+        <div class="row">
+            <div class="col">
+                <h5>SMS등록</h5>
+            </div>
+            <div class="col right_btn">
+                <button type="button" class="btn btn-danger">삭제</button>
+                <a class="btn btn-primary" href="#" role="button" data-toggle="modal" data-target="#register">등록</a>
+                <!-- Modal -->
+                <div class="modal fade" id="register" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="registerLabel">등록하기</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <form action="">
+                        <div class="modal-body" style="text-align:left;">
+                            <div class="form-group row">
+                                <label for="user_name" class="col-sm-2 col-form-label">성명</label>
+                                <div class="col-sm-3">
+                                  <input type="text" class="form-control" id="user_name">
+                                </div>
+                                <div class="col-sm-3">
+                                    <button type="button" class="btn btn-primary">조회</button>
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label for="user_organization" class="col-sm-2 col-form-label">소속</label>
+                                <div class="col-sm-3">
+                                  <input type="text" class="form-control" id="user_organization">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label for="user_tel" class="col-sm-2 col-form-label">핸드폰번호</label>
+                                <div class="col-sm-3">
+                                  <input type="tel" class="form-control" id="user_tel">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label for="" class="col-sm-2 col-form-label" style="text-align: left;">관제장비</label>
+                                <div class="form-check form-check-inline pl-3 col-sm-3">
+                                    <input class="form-check-input" type="checkbox" id="network" value="option1">
+                                    <label class="form-check-label" for="network">네트워크장비</label>
+                                </div>
+                                <div class="form-check form-check-inline col-sm-3">
+                                    <input class="form-check-input" type="checkbox" id="server" value="option2">
+                                    <label class="form-check-label" for="server">서버</label>
+                                </div>
+                                <div class="form-check form-check-inline col-sm-3">
+                                    <input class="form-check-input" type="checkbox" id="etc" value="option3">
+                                    <label class="form-check-label" for="etc">기타</label>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-sm-2 col-form-label" style="text-align: left;">장애등급</label>
+                                <div class="form-check form-check-inline pl-3 col-sm-3">
+                                    <input class="form-check-input" type="checkbox" id="Critical" value="option1">
+                                    <label class="form-check-label" for="Critical">Critical</label>
+                                </div>
+                                <div class="form-check form-check-inline col-sm-3">
+                                    <input class="form-check-input" type="checkbox" id="major" value="option2">
+                                    <label class="form-check-label" for="major">major</label>
+                                </div>
+                                <div class="form-check form-check-inline col-sm-3">
+                                    <input class="form-check-input" type="checkbox" id="Minor" value="option3">
+                                    <label class="form-check-label" for="Minor">Minor</label>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-sm-2 col-form-label" style="text-align: left;">장애등급</label>
+                                <div class="form-check form-check-inline pl-3 col-sm-3">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="YES" value="option1">
+                                    <label class="form-check-label" for="YES">YES</label>
+                                </div>
+                                <div class="form-check form-check-inline col-sm-3">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="NO" value="option2">
+                                    <label class="form-check-label" for="NO">NO</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">등록</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                        </div>
+                     </form>
+                    </div>
+                 </div>
+                </div>
+                <!--modal end-->
+            </div>
+        </div>
+    </div>
+    <div class="container-xl p-3 content">
+        <form action="">
+            <div class="c_name">
+                <label for="name">성명 <input type="text" id="name" placeholder="ex) 홍길동"/></label>
+                <label for="number">핸드폰 번호 <input type="tel" id="number" placeholder="ex) 01012345678"/></label>
+                <button type="submit" class="btn btn-primary mb-1 ml-3">조회</button>
+            </div>
+        </form>
+        <table class="table table-striped" style="vertical-align: middle; text-align: center;">
+            <thead>
+              <tr>
+                <th scope="col">선택</th>
+                <th scope="col">성명</th>
+                <th scope="col">소속</th>
+                <th scope="col">핸드폰번호</th>
+                <th scope="col">관제장비</th>
+                <th scope="col">장애등급</th>
+                <th scope="col">장애발송여부</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <td><a href="" data-toggle="modal" data-target="#first">김칠중</a></td>
+                    <!-- Modal -->
+                <div class="modal fade" id="first" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="firstLabel">정보보기</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <form action="">
+                        <div class="modal-body" style="text-align:left;">
+                            <div class="form-group row">
+                                <label for="user_name" class="col-sm-2 col-form-label">성명</label>
+                                <div class="col-sm-3">
+                                  <input type="text" class="form-control" id="user_name" value="김칠중">
+                                </div>
+                                <div class="col-sm-3">
+                                    <button type="button" class="btn btn-primary">조회</button>
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label for="user_organization" class="col-sm-2 col-form-label">소속</label>
+                                <div class="col-sm-3">
+                                  <input type="text" class="form-control" id="user_organization" value="(주)열림넷">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label for="user_tel" class="col-sm-2 col-form-label">핸드폰번호</label>
+                                <div class="col-sm-3">
+                                  <input type="tel" class="form-control" id="user_tel" value="010-1234-5678">
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <label for="" class="col-sm-2 col-form-label" style="text-align: left;">관제장비</label>
+                                <div class="form-check form-check-inline pl-3 col-sm-3">
+                                    <input class="form-check-input" type="checkbox" id="network" value="option1" checked>
+                                    <label class="form-check-label" for="network">네트워크장비</label>
+                                </div>
+                                <div class="form-check form-check-inline col-sm-3">
+                                    <input class="form-check-input" type="checkbox" id="server" value="option2">
+                                    <label class="form-check-label" for="server">서버</label>
+                                </div>
+                                <div class="form-check form-check-inline col-sm-3">
+                                    <input class="form-check-input" type="checkbox" id="etc" value="option3">
+                                    <label class="form-check-label" for="etc">기타</label>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-sm-2 col-form-label" style="text-align: left;">장애등급</label>
+                                <div class="form-check form-check-inline pl-3 col-sm-3">
+                                    <input class="form-check-input" type="checkbox" id="Critical" value="option1" checked>
+                                    <label class="form-check-label" for="Critical">Critical</label>
+                                </div>
+                                <div class="form-check form-check-inline col-sm-3">
+                                    <input class="form-check-input" type="checkbox" id="major" value="option2">
+                                    <label class="form-check-label" for="major">major</label>
+                                </div>
+                                <div class="form-check form-check-inline col-sm-3">
+                                    <input class="form-check-input" type="checkbox" id="Minor" value="option3">
+                                    <label class="form-check-label" for="Minor">Minor</label>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-sm-2 col-form-label" style="text-align: left;">장애등급</label>
+                                <div class="form-check form-check-inline pl-3 col-sm-3">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="YES" value="option1" checked>
+                                    <label class="form-check-label" for="YES">YES</label>
+                                </div>
+                                <div class="form-check form-check-inline col-sm-3">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="NO" value="option2">
+                                    <label class="form-check-label" for="NO">NO</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">등록</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+                        </div>
+                     </form>
+                    </div>
+                 </div>
+                </div>
+                <!--modal end-->
+                    <td>(주)열림넷</td>
+                    <td>01012345678</td>
+                    <td>네트워크 서버</td>
+                    <td class="text-danger">Critical</td>
+                    <td>YES</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <td><a href="">김칠중</a></td>
+                    <td>(주)열림넷</td>
+                    <td>01012345678</td>
+                    <td>네트워크 서버</td>
+                    <td class="text-success">normality</td>
+                    <td>YES</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <td><a href="">김칠중</a></td>
+                    <td>(주)열림넷</td>
+                    <td>01012345678</td>
+                    <td>네트워크 서버</td>
+                    <td>Critical</td>
+                    <td>YES</td>
+                </tr>
+            </tbody>
+          </table>
+          <div class="row footer">
+              <div class="col-sm-12 col-md-10">
+                  <div class="dataTables_info" id="kt_table_1_info" role="status" aria-live="polite">
+                    <span>
+                    <a class="btn-link" href="#" role="button" onclick="" id="lbselectcnt">
+                        선택: 0
+                    </a>
+                        </span>
+                        <span id="totalmemcnt" class="label label-info" style="margin-left:12px;"> 전체 43건</span>
+                            (1 to 10) 
+                            <a href="#" onclick="refreshtable('kt_table_1');" class="lbBottomLastUpdate">
+                            <i class="la la-refresh"></i>
+                            <span id="kt_table_1_refresh_datetime">2020-11-07 00:00:16</span>
+                        </a>
+                    </div>
+                    </div>
+                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                        <div class="btn-group mr-2 btn-group-sm" role="group" aria-label="First group">
+                          <button type="button" class="btn prov">&#60;</button>
+                          <button type="button" class="btn btn-primary">1</button>
+                          <button type="button" class="btn">2</button>
+                          <button type="button" class="btn">3</button>
+                          <button type="button" class="btn">4</button>
+                          <button type="button" class="btn next">&#62;</button>
+                    </div>
+            </div>
+    </div>
+</body>
+</html>
